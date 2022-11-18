@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  # 全てのコントローラで、最初にbefore_actionメソッドが実行（devise使用時）
+  before_action :authenticate_user!, except: [:top]
+  # ↑認証済ユーザー以外はtopへ
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
